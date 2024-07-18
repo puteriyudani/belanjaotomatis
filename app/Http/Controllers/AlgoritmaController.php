@@ -59,9 +59,9 @@ class AlgoritmaController extends Controller
                 if ($value->id == $value1->subkriteria->kriteria_id && $value1->produks) {
                     $divisor = max($minMax[$value->id]) - min($minMax[$value->id]);
                     if ($divisor != 0) {
-                        $utilities[$value1->produks->nama][] = round(($value1->subkriteria->bobot - min($minMax[$value->id])) / $divisor, 3);
+                        $utilities[$value1->produks->id][] = round(($value1->subkriteria->bobot - min($minMax[$value->id])) / $divisor, 3);
                     } else {
-                        $utilities[$value1->produks->nama][] = 0; // atau nilai yang sesuai dengan kebutuhan Anda jika pembagi nol
+                        $utilities[$value1->produks->id][] = 0; // atau nilai yang sesuai dengan kebutuhan Anda jika pembagi nol
                     }
                 }
             }
@@ -130,16 +130,11 @@ class AlgoritmaController extends Controller
         // Ambil produk sesuai urutan dan urutkan berdasarkan sold
         $orderedProduks = [];
         foreach ($orderedProductNames as $productName) {
-            $product = $produks->firstWhere('nama', $productName);
+            $product = $produks->firstWhere('id', $productName);
             if ($product) {
                 $orderedProduks[] = $product;
             }
         }
-
-        // Urutkan produk berdasarkan sold (dari yang paling sedikit ke paling banyak)
-        usort($orderedProduks, function ($a, $b) {
-            return $a->sold <=> $b->sold;
-        });
 
         return view('rangking.index', compact('produks', 'nilaiAkhir', 'orderedProduks'))
             ->with('i');

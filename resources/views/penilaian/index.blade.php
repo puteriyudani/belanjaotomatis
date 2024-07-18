@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2 me-3">Penilaian Produk</h1>
+        <h1 class="h2 me-3">Belanja Cepat</h1>
     </div>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -23,7 +23,7 @@
 
     <form action="{{ route('penilaian.store') }}" method="POST">
         @csrf
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm" hidden>
             <thead>
                 <tr>
                     <th>No</th>
@@ -68,7 +68,7 @@
                 @endforelse
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary">List 10 Barang</button>
     </form>
 
     {{-- {!! $produks->links() !!} --}}

@@ -73,8 +73,8 @@ class PenilaianController extends Controller
                         }
                     }
 
-                    // Cek kriteria "penjualan"
-                    if ($key_1 == 3) { // Asumsikan kriteria keempat adalah "penjualan"
+                    // Cek kriteria "kategori"
+                    if ($key_1 == 3) { // Asumsikan kriteria keempat adalah "kategori"
                         if ($produk->kategori == 'Harian') {
                             $subkriteriaId = Subkriteria::where('nama', 'Harian')->first()->id;
                         } elseif ($produk->kategori == 'Mingguan') {
@@ -91,7 +91,7 @@ class PenilaianController extends Controller
                 }
             }
 
-            return back()->with('msg', 'Berhasil disimpan');
+            return redirect()->route('rangking.index')->with('msg', 'Berhasil disimpan');
         } catch (Exception $e) {
             Log::emergency("File:", [$e->getFile()], "Line:", [$e->getLine()], "Message:", [$e->getMessage()]);
             die("Gagal");
