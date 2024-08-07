@@ -6,9 +6,9 @@
             <h1 class="h2">Beranda</h1>
         </div>
         <div class="mb-5">
-            <a href="{{ route('masyarakats.index') }}" class="btn btn-primary btn-lg px-4 me-3">
-                <h2>{{ $masyarakats }}</h2>
-                <p>Data Masyarakat</p>
+            <a href="{{ route('produks.index') }}" class="btn btn-primary btn-lg px-4 me-3">
+                <h2>{{ $produks }}</h2>
+                <p>Data Produk</p>
             </a>
         </div>
     @endauth

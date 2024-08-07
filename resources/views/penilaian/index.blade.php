@@ -74,7 +74,7 @@
             </form>
         </div>
         <div class="col-2">
-            <button type="button" class="btn btn-primary">Input Modal</button>
+            <a href="{{ route('inputmodal.index') }}"><button type="submit" class="btn btn-primary">Input Modal</button></a>
         </div>
     </div>
 

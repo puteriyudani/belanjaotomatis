@@ -10,14 +10,14 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th scope="col">Nama Masyarakat</th>
+                        <th scope="col">Nama Produk</th>
                         @foreach ($kriterias as $kriteria => $value)
                             <th>{{ $value->nama }}</th>
                         @endforeach
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($masyarakats as $masyarakat => $valt)
+                    @forelse ($produks as $produk => $valt)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $valt->nama }}</td>
@@ -48,7 +48,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th scope="col">Nama Masyarakat</th>
+                        <th scope="col">Nama Produk</th>
                         @foreach ($kriterias as $kriteria => $value)
                             <th>{{ $value->nama }}</th>
                         @endforeach

@@ -16,10 +16,6 @@ class Penilaian extends Model
         return $this->belongsTo(Subkriteria::class, 'subkriteria_id');
     }
 
-    public function masyarakats() {
-        return $this->belongsTo(Masyarakat::class, 'masyarakat_id');
-    }
-
     public function produks() {
         return $this->belongsTo(Produk::class, 'produk_id');
     }

@@ -148,14 +148,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('masyarakats.index') }}" class="nav-link text-white">
-                                <svg class="bi pe-none me-2" width="16" height="16">
-                                    <use xlink:href="#masyarakat" />
-                                </svg>
-                                Masyarakat
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('produks.index') }}" class="nav-link text-white">
                                 <svg class="bi pe-none me-2" width="16" height="16">
                                     <use xlink:href="#masyarakat" />
@@ -168,27 +160,7 @@
                                 <svg class="bi pe-none me-2" width="16" height="16">
                                     <use xlink:href="#penilaian" />
                                 </svg>
-                                Penilaian
-                            </a>
-                        </li>
-
-                        <hr>
-
-                        <li class="nav-item">
-                            <a href="{{ route('persen.index') }}" class="nav-link text-white">
-                                <svg class="bi pe-none me-2" width="16" height="16">
-                                    <use xlink:href="#persen" />
-                                </svg>
-                                Persentase Penerima
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('rangking.index') }}" class="nav-link text-white">
-                                <svg class="bi pe-none me-2" width="16" height="16">
-                                    <use xlink:href="#rank" />
-                                </svg>
-                                Rank Penerima BLT
+                                Belanja Cepat
                             </a>
                         </li>
                     </ul>

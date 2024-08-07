@@ -150,4 +150,48 @@ class AlgoritmaController extends Controller
             ->with('i')
             ->with('j');
     }
+
+    public function modal(Request $request)
+    {
+        $penilaian = Penilaian::with('subkriteria', 'produks')->get();
+        if (count($penilaian) == 0) {
+            return redirect(route('penilaian.index'));
+        }
+
+        $produks = Produk::with('penilaian.subkriteria')->get();
+        $kriterias = Kriteria::with('subkriterias')->orderBy('id', 'ASC')->get();
+
+        // Mencari min max
+        $minMax = $this->min_max_penilaian($kriterias, $penilaian);
+
+        // Utility
+        $utility = $this->hitung_utility($penilaian, $kriterias, $minMax);
+
+        $nilaiAkhirPerUtility = $this->nilai_akhir_per_utility($utility, $kriterias);
+
+        // Rank
+        $nilaiAkhir = $this->prosesrank($utility, $nilaiAkhirPerUtility);
+
+        // Ambil nama produk berdasarkan urutan nilaiAkhir
+        $orderedProductNames = array_keys($nilaiAkhir);
+
+        // Ambil produk sesuai urutan dan urutkan berdasarkan sold
+        $orderedProduks = [];
+        $count = 0;
+        $totalHarga = 0;
+        $modal = $request->input('modal'); // Ambil nilai modal dari request
+
+        foreach ($orderedProductNames as $productName) {
+            $product = $produks->firstWhere('id', $productName);
+            if ($product && $totalHarga + $product->harga <= $modal) {
+                $orderedProduks[] = $product;
+                $totalHarga += $product->harga;
+                $count++;
+            }
+        }
+
+        return view('rangking.index', compact('produks', 'nilaiAkhir', 'orderedProduks', 'totalHarga', 'modal')) // Kirim nilai modal ke view
+            ->with('i')
+            ->with('j');
+    }
 }

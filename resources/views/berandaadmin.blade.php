@@ -12,7 +12,7 @@
             </a>
             <a href="{{ route('subkriterias.index') }}" class="btn btn-secondary btn-lg px-4 me-3">
                 <h2>{{ $subkriterias }}</h2>
-                <p>Data Sub Kriteria</p>            
+                <p>Data Sub Kriteria</p>
             </a>
         </div>
     @endauth

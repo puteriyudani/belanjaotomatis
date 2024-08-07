@@ -1,15 +1,14 @@
 <?php
 
 use App\Http\Controllers\AlgoritmaController;
-use App\Http\Controllers\AlgoritmaFormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\InputModalController;
 use App\Http\Controllers\MasyarakatController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\PenilaianController;
-use App\Http\Controllers\PenilaianformController;
 use App\Http\Controllers\PersenController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SubkriteriaController;
@@ -54,20 +53,20 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     //testing
     Route::resource('form-masyarakats', TestingController::class);
     Route::resource('forms', FormController::class);
-    Route::resource('penilaianform', PenilaianformController::class);
-    Route::get('perhitunganform', [AlgoritmaFormController::class, 'index'])->name('perhitunganform.index');
-    Route::get('rangkingform', [AlgoritmaFormController::class, 'rank'])->name('rangkingform.index');
 
 });
 
 //petugas
 Route::middleware(['auth', 'user-access:petugas'])->group(function () {
     Route::get('beranda', [BerandaController::class, 'beranda'])->name('beranda');
-    Route::resource('masyarakats', MasyarakatController::class);
     Route::resource('penilaian', PenilaianController::class);
     Route::get('rangking', [AlgoritmaController::class, 'rank'])->name('rangking.index');
     Route::post('import-excel', [ExcelController::class, 'import'])->name('import.excel');
     Route::resource('persen', PersenController::class);
 
     Route::resource('produks', ProdukController::class);
+
+    // input modal
+    Route::resource('inputmodal', InputModalController::class);
+    Route::get('rangking-modal', [AlgoritmaController::class, 'modal'])->name('rangking.modal');
 });

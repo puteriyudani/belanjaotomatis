@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use App\Models\Masyarakat;
+use App\Models\Produk;
 use App\Models\Subkriteria;
 
 class BerandaController extends Controller
@@ -13,16 +14,14 @@ class BerandaController extends Controller
     }
 
     public function beranda() {
-        $masyarakats = Masyarakat::count();
-
-        return view('beranda', compact('masyarakats'));
+        $produks = Produk::count();
+        return view('beranda', compact('produks'));
     }
 
     public function berandaadmin() {
-        $masyarakats = Masyarakat::count();
         $kriterias = Kriteria::count();
         $subkriterias = Subkriteria::count();
 
-        return view('berandaadmin', compact('kriterias', 'subkriterias', 'masyarakats'));
+        return view('berandaadmin', compact('kriterias', 'subkriterias'));
     }
 }
