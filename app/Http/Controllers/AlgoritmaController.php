@@ -129,14 +129,25 @@ class AlgoritmaController extends Controller
 
         // Ambil produk sesuai urutan dan urutkan berdasarkan sold
         $orderedProduks = [];
+        $count = 0;
         foreach ($orderedProductNames as $productName) {
             $product = $produks->firstWhere('id', $productName);
             if ($product) {
                 $orderedProduks[] = $product;
+                $count++;
+            }
+            if ($count >= 10) {
+                break;
             }
         }
 
-        return view('rangking.index', compact('produks', 'nilaiAkhir', 'orderedProduks'))
-            ->with('i');
+        // Hitung jumlah total harga dari orderedProduks
+        $totalHarga = array_reduce($orderedProduks, function ($carry, $product) {
+            return $carry + $product->harga;
+        }, 0);
+
+        return view('rangking.index', compact('produks', 'nilaiAkhir', 'orderedProduks', 'totalHarga'))
+            ->with('i')
+            ->with('j');
     }
 }

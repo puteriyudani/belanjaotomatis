@@ -11,7 +11,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
+                        <th scope="col">id_produk</th>
                         <th scope="col">Nilai Akhir</th>
                         <th scope="col">Rank</th>
                     </tr>
@@ -43,6 +43,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
+                        <th scope="col">Harga</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Sold</th>
                         <th scope="col">Rank</th>
@@ -55,19 +56,27 @@
 
                     @forelse ($orderedProduks as $produk)
                         <tr>
-                            <td>{{ ++$i }}</td>
+                            <td>{{ $no++ }}</td>
                             <td>{{ $produk->nama }}</td>
+                            <td>Rp. {{ number_format($produk->harga, 0, ',', '.') }}</td>
                             <td>{{ $produk->stock }}</td>
                             <td>{{ $produk->sold }}</td>
-                            <td>{{ $no++ }}</td>
+                            <td>{{ $loop->iteration }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td>Tidak ada data</td>
+                            <td colspan="6">Tidak ada data</td>
                         </tr>
                     @endforelse
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" style="text-align: right"><strong>Total Harga:</strong></td>
+                        <td>Rp. {{ number_format($totalHarga, 0, ',', '.') }}</td>
+                    </tr>
+                </tfoot>
             </table>
+
         </div>
     </div>
 @endsection
